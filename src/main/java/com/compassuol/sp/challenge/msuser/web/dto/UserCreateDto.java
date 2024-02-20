@@ -32,6 +32,7 @@ public class UserCreateDto {
     private String cep;
 
     @NotBlank
+    @Size(min = 6)
     private String password;
 
     @NotNull
