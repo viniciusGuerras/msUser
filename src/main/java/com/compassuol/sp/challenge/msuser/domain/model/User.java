@@ -24,7 +24,7 @@ public class User implements Serializable {
     @Column(name = "last_name", length = 120, nullable = false)
     private String lastName;
 
-    @Column(name = "cpf", unique = true, length = 11, nullable = false)
+    @Column(name = "cpf", unique = true, nullable = false)
     private String cpf;
 
     @Column(name = "birthdate", nullable = false)
@@ -40,7 +40,7 @@ public class User implements Serializable {
     private String password;
 
     @Column(name = "active", nullable = false)
-    private boolean active;
+    private Boolean active;
 
     @Override
     public boolean equals(Object o) {
