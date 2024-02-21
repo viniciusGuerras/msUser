@@ -1,5 +1,6 @@
 package com.compassuol.sp.challenge.msuser.web.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,7 @@ public class UserUpdateResponseDto {
         private String firstName;
         private String lastName;
         private String cpf;
-        @DateTimeFormat(pattern = "yyyy-MM-dd")
+        @JsonFormat(pattern = "yyyy-MM-dd")
         private Date birthdate;
         private String email;
         private String cep;
