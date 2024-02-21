@@ -1,6 +1,7 @@
 package com.compassuol.sp.challenge.msuser.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,7 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Getter @Setter @NoArgsConstructor
+@Data
+@NoArgsConstructor
 public class UserUpdateResponseDto {
         private String firstName;
         private String lastName;
