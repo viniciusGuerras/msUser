@@ -3,11 +3,9 @@ package com.compassuol.sp.challenge.msuser.web.controller;
 
 import com.compassuol.sp.challenge.msuser.domain.model.User;
 import com.compassuol.sp.challenge.msuser.domain.service.UserService;
-import com.compassuol.sp.challenge.msuser.web.dto.UserCreateDto;
-import com.compassuol.sp.challenge.msuser.web.dto.UserResponseDto;
-import com.compassuol.sp.challenge.msuser.web.dto.UserUpdateDto;
-import com.compassuol.sp.challenge.msuser.web.dto.UserUpdateResponseDto;
+import com.compassuol.sp.challenge.msuser.web.dto.*;
 import com.compassuol.sp.challenge.msuser.web.dto.mapper.UserMapper;
+import com.compassuol.sp.challenge.msuser.web.dto.mapper.UserPasswordMapper;
 import com.compassuol.sp.challenge.msuser.web.dto.mapper.UserUpdateMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,5 +38,11 @@ public class UserController {
     public ResponseEntity<UserUpdateResponseDto> updateUserInfo(@PathVariable("id") Long id, @RequestBody @Valid UserUpdateDto dto){
         User updatedUser = service.updateInfo(id, UserUpdateMapper.toUser(dto));
         return ResponseEntity.status(HttpStatus.OK).body(UserUpdateMapper.toDto(updatedUser));
+    }
+
+    @PutMapping("/{id}/password")
+    public ResponseEntity<UserPasswordResponseDto> updateUserPassword(@PathVariable("id") Long id, @RequestBody UserPasswordDto dto){
+        User updatedUser =service.updatePassword(id, UserPasswordMapper.toUser(dto));
+        return ResponseEntity.status(HttpStatus.OK).body(UserPasswordMapper.toDto(updatedUser));
     }
 }
