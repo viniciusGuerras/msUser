@@ -1,5 +1,6 @@
 package com.compassuol.sp.challenge.msuser.domain.service;
 
+
 import com.compassuol.sp.challenge.msuser.domain.model.User;
 import com.compassuol.sp.challenge.msuser.domain.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -23,4 +24,5 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Usuário com o ID " + id + " não encontrado"));
     }
+
 }
