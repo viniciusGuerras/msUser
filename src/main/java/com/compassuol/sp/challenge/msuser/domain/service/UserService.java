@@ -25,4 +25,17 @@ public class UserService {
                 .orElseThrow(() -> new EntityNotFoundException("Usuário com o ID " + id + " não encontrado"));
     }
 
+    @Transactional
+    public User updateInfo(Long id, User newUser) {
+        User oldUser = findById(id);
+        oldUser.setFirstName(newUser.getFirstName());
+        oldUser.setLastName(newUser.getLastName());
+        oldUser.setCpf(newUser.getCpf());
+        oldUser.setBirthdate(newUser.getBirthdate());
+        oldUser.setEmail(newUser.getEmail());
+        oldUser.setCep(newUser.getCep());
+        oldUser.setActive(newUser.getActive());
+        return oldUser;
+    }
+
 }
