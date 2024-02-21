@@ -1,5 +1,6 @@
 package com.compassuol.sp.challenge.msuser.domain.service;
 
+
 import com.compassuol.sp.challenge.msuser.domain.model.User;
 import com.compassuol.sp.challenge.msuser.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,5 +17,4 @@ public class UserService {
     public User create(User user){
         return userRepository.save(user);
     }
-
 }

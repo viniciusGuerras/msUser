@@ -12,7 +12,6 @@ import java.util.Date;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class UserCreateDto {
-
     @NotBlank
     @Size(min = 3)
     private String firstName;
