@@ -1,11 +1,16 @@
 package com.compassuol.sp.challenge.msuser.web.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class UserCreateDto {
     @NotBlank
     @Size(min = 3)
@@ -21,6 +26,7 @@ public class UserCreateDto {
 
     @NotNull
     @Past
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
 
     @NotBlank
