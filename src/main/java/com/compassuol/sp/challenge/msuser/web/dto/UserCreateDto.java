@@ -1,5 +1,6 @@
 package com.compassuol.sp.challenge.msuser.web.dto;
 
+
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
