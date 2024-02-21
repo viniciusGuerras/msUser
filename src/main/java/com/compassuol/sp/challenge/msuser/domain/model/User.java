@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Entity
-@Table(schema = "users")
+@Table(name = "users", schema = "users")
 public class User implements Serializable {
 
     @Id
@@ -28,6 +28,7 @@ public class User implements Serializable {
     private String cpf;
 
     @Column(name = "birthdate", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date birthdate;
 
     @Column(name = "email", length = 120, nullable = false, unique = true)
