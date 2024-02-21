@@ -2,7 +2,6 @@ package com.compassuol.sp.challenge.msuser.domain.service;
 
 import com.compassuol.sp.challenge.msuser.domain.model.User;
 import com.compassuol.sp.challenge.msuser.domain.repository.UserRepository;
-import com.compassuol.sp.challenge.msuser.web.dto.UserUpdateDto;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,7 @@ public class UserService {
     }
 
     @Transactional
-    public User updateInfo(Long id, UserUpdateDto newUser) {
+    public User updateInfo(Long id, User newUser) {
         User oldUser = findById(id);
         oldUser.setFirstName(newUser.getFirstName());
         oldUser.setLastName(newUser.getLastName());
