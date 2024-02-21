@@ -1,12 +1,11 @@
 package com.compassuol.sp.challenge.msuser.domain.service;
 
-
+import com.compassuol.sp.challenge.msuser.domain.exceptions.EntityNotFoundException;
+import com.compassuol.sp.challenge.msuser.domain.exceptions.UniqueFieldValidationException;
 import com.compassuol.sp.challenge.msuser.domain.model.User;
 import com.compassuol.sp.challenge.msuser.domain.repository.UserRepository;
-import com.compassuol.sp.challenge.msuser.web.dto.UserPasswordDto;
-import com.compassuol.sp.challenge.msuser.web.dto.UserUpdateDto;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,13 +17,19 @@ public class UserService {
 
     @Transactional
     public User create(User user){
-        return userRepository.save(user);
+        try {
+            return userRepository.save(user);
+        }
+        catch (DataIntegrityViolationException ex)
+        {
+            throw new UniqueFieldValidationException("Cpf or Email already on system.");
+        }
     }
 
     @Transactional
     public User findById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Usuário com o ID " + id + " não encontrado"));
+                .orElseThrow(() -> new EntityNotFoundException("User with ID:" + id + " not found"));
     }
 
     @Transactional
@@ -38,6 +43,7 @@ public class UserService {
         oldUser.setCep(newUser.getCep());
         oldUser.setActive(newUser.getActive());
         return oldUser;
+
     }
 
     @Transactional
