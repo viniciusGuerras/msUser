@@ -1,16 +1,18 @@
 package com.compassuol.sp.challenge.msuser.web.controller;
 
+
 import com.compassuol.sp.challenge.msuser.domain.model.User;
 import com.compassuol.sp.challenge.msuser.domain.service.UserService;
 import com.compassuol.sp.challenge.msuser.web.dto.*;
 import com.compassuol.sp.challenge.msuser.web.dto.mapper.UserMapper;
 import com.compassuol.sp.challenge.msuser.web.dto.mapper.UserPasswordMapper;
+import com.compassuol.sp.challenge.msuser.web.dto.mapper.UserUpdateMapper;
 import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService service;
+
 
     @PostMapping
     public ResponseEntity<UserResponseDto> create(@RequestBody @Valid UserCreateDto dto){
@@ -32,9 +35,9 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDto> updateUserInfo(@PathVariable("id") Long id, @RequestBody @Valid UserUpdateDto dto){
-        User updatedUser = service.updateInfo(id, dto);
-        return ResponseEntity.status(HttpStatus.OK).body(UserMapper.toDto(updatedUser));
+    public ResponseEntity<UserUpdateResponseDto> updateUserInfo(@PathVariable("id") Long id, @RequestBody @Valid UserUpdateDto dto){
+        User updatedUser = service.updateInfo(id, UserUpdateMapper.toUser(dto));
+        return ResponseEntity.status(HttpStatus.OK).body(UserUpdateMapper.toDto(updatedUser));
     }
 
     @PutMapping("/{id}/password")
