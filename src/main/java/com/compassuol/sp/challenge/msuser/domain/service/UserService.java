@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
+  
     private final UserRepository userRepository;
 
     @Transactional
@@ -23,5 +23,4 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Usuário com o ID " + id + " não encontrado"));
     }
-
 }

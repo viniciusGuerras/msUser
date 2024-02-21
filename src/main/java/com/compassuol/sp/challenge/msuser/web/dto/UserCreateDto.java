@@ -1,5 +1,6 @@
 package com.compassuol.sp.challenge.msuser.web.dto;
 
+
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +13,6 @@ import java.util.Date;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class UserCreateDto {
-
     @NotBlank
     @Size(min = 3)
     private String firstName;
