@@ -2,6 +2,7 @@ package com.compassuol.sp.challenge.msuser.domain.service;
 
 import com.compassuol.sp.challenge.msuser.domain.model.User;
 import com.compassuol.sp.challenge.msuser.domain.repository.UserRepository;
+import com.compassuol.sp.challenge.msuser.web.dto.UserPasswordDto;
 import com.compassuol.sp.challenge.msuser.web.dto.UserUpdateDto;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -38,4 +39,10 @@ public class UserService {
         return oldUser;
     }
 
+    @Transactional
+    public User updatePassword(Long id, User user) {
+        User foundUser = findById(id);
+        foundUser.setPassword(user.getPassword());
+        return foundUser;
+    }
 }
