@@ -16,6 +16,5 @@ public class UserResponseDto {
     private Date birthdate;
     private String email;
     private String cep;
-    private String password;
     private Boolean active;
 }
