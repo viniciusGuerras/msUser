@@ -5,8 +5,6 @@ import com.compassuol.sp.challenge.msuser.domain.model.User;
 import com.compassuol.sp.challenge.msuser.domain.service.UserService;
 import com.compassuol.sp.challenge.msuser.web.dto.*;
 import com.compassuol.sp.challenge.msuser.web.dto.mapper.UserMapper;
-import com.compassuol.sp.challenge.msuser.web.dto.mapper.UserPasswordMapper;
-import com.compassuol.sp.challenge.msuser.web.dto.mapper.UserUpdateMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,7 +19,6 @@ public class UserController {
 
     private final UserService service;
 
-
     @PostMapping
     public ResponseEntity<UserResponseDto> create(@RequestBody @Valid UserCreateDto dto){
         User createdUser = service.create(UserMapper.toUser(dto));
@@ -35,14 +32,14 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserUpdateResponseDto> updateUserInfo(@PathVariable("id") Long id, @RequestBody @Valid UserUpdateDto dto){
-        User updatedUser = service.updateInfo(id, UserUpdateMapper.toUser(dto));
-        return ResponseEntity.status(HttpStatus.OK).body(UserUpdateMapper.toDto(updatedUser));
+    public ResponseEntity<Void> updateUserInfo(@PathVariable("id") Long id, @RequestBody @Valid UserUpdateDto dto){
+        service.updateInfo(id, UserMapper.toUser(dto));
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PutMapping("/{id}/password")
-    public ResponseEntity<UserPasswordResponseDto> updateUserPassword(@PathVariable("id") Long id, @RequestBody UserPasswordDto dto){
-        User updatedUser =service.updatePassword(id, UserPasswordMapper.toUser(dto));
-        return ResponseEntity.status(HttpStatus.OK).body(UserPasswordMapper.toDto(updatedUser));
+    public ResponseEntity<Void> updateUserPassword(@PathVariable("id") Long id, @RequestBody UserPasswordDto dto){
+        service.updatePassword(id, UserMapper.toUser(dto));
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
