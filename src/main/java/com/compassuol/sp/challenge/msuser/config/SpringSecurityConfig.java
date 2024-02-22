@@ -29,6 +29,13 @@ public class SpringSecurityConfig {
 
     private  final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    private static final String[] DOCUMENTATION_OPENAPI = {
+            "/docs/index.html",
+            "/msuser.html", "/msuser/**",
+            "/swagger-ui-custom.html", "/swagger-vi.html", "/swagger-ui/**",
+            "/**.html", "/webjars/**", "/configuration/**", "/swagger-resources/**"
+    };
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
@@ -37,6 +44,7 @@ public class SpringSecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "v1/users", "v1/login").permitAll()
+                        .requestMatchers(DOCUMENTATION_OPENAPI).permitAll()
                         .anyRequest().authenticated()
                 )
                 .userDetailsService(userDetailsServiceImp)
