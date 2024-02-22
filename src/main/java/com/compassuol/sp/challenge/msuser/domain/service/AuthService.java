@@ -6,15 +6,12 @@ import com.compassuol.sp.challenge.msuser.domain.repository.UserRepository;
 import com.compassuol.sp.challenge.msuser.jwt.dto.AuthenticationResponseDto;
 import com.compassuol.sp.challenge.msuser.jwt.service.JwtService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class AuthService {
 
