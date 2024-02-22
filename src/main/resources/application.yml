@@ -18,3 +18,10 @@ spring:
       hibernate.format_sql: false
     hibernate:
       ddl-auto: update
+
+springdoc:
+  swagger-ui:
+    path: /msuser.html
+  api-docs:
+    path: /msuser
+  packages-to-scan: com.compassuol.sp.challenge.msuser.web.controller
