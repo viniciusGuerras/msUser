@@ -37,7 +37,7 @@ public class UserService {
     }
 
     @Transactional
-    public User updateInfo(Long id, User newUser) {
+    public void updateInfo(Long id, User newUser) {
         User oldUser = findById(id);
         oldUser.setFirstName(newUser.getFirstName());
         oldUser.setLastName(newUser.getLastName());
@@ -46,14 +46,11 @@ public class UserService {
         oldUser.setEmail(newUser.getEmail());
         oldUser.setCep(newUser.getCep());
         oldUser.setActive(newUser.getActive());
-        return oldUser;
-
     }
 
     @Transactional
-    public User updatePassword(Long id, User user) {
+    public void updatePassword(Long id, User user) {
         User foundUser = findById(id);
         foundUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        return foundUser;
     }
 }
