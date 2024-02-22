@@ -12,7 +12,7 @@ public class LoginRequestDto {
 
     @NotBlank
     @Email
-    private String Email;
+    private String email;
 
     @NotBlank
     @Size(min = 6)
