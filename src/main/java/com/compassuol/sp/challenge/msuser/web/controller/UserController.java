@@ -40,8 +40,6 @@ public class UserController {
                             ,content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
                     @ApiResponse(responseCode = "422", description = "Invalid request body"
                             ,content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
-                    @ApiResponse(responseCode = "404", description = "Resource not found"
-                            ,content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
             }
     )
     @PostMapping
