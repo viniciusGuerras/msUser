@@ -4,6 +4,7 @@ import com.compassuol.sp.challenge.msuser.domain.exceptions.EntityNotFoundExcept
 import com.compassuol.sp.challenge.msuser.domain.exceptions.UniqueFieldValidationException;
 import com.compassuol.sp.challenge.msuser.domain.model.User;
 import com.compassuol.sp.challenge.msuser.domain.repository.UserRepository;
+import com.compassuol.sp.challenge.msuser.openFeing.MsAddressConsumer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,12 +17,15 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
+    private final MsAddressConsumer msAddressConsumer;
+
     private final UserRepository userRepository;
 
     @Transactional
     public User create(User user){
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+            msAddressConsumer.saveAddress(user.getCep());
             return userRepository.save(user);
         }
         catch (DataIntegrityViolationException ex)
