@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
-@FeignClient(value = "addressConsumer", url = "localhost:8081/address/")
+@FeignClient(value = "addressConsumer", url = "localhost:8081/v1/address/")
 public interface MsAddressConsumer {
 
     @PostMapping(value = "{cep}")
-    Long saveAddress(@PathVariable String cep);
+    void saveAddress(@PathVariable String cep);
 
 }
