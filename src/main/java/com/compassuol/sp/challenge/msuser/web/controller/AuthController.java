@@ -1,7 +1,7 @@
 package com.compassuol.sp.challenge.msuser.web.controller;
 
 import com.compassuol.sp.challenge.msuser.domain.service.AuthService;
-import com.compassuol.sp.challenge.msuser.jwt.dto.AuthenticationResponseDto;
+import com.compassuol.sp.challenge.msuser.domain.jwt.dto.AuthenticationResponseDto;
 import com.compassuol.sp.challenge.msuser.web.dto.LoginRequestDto;
 import com.compassuol.sp.challenge.msuser.web.dto.mapper.UserMapper;
 import com.compassuol.sp.challenge.msuser.web.exception.ErrorMessage;
