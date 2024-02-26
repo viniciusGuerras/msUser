@@ -19,9 +19,25 @@ spring:
     hibernate:
       ddl-auto: update
 
+  #RabbitMq
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
 springdoc:
   swagger-ui:
     path: /msuser.html
   api-docs:
     path: /msuser
   packages-to-scan: com.compassuol.sp.challenge.msuser.web.controller
+
+
+rabbitmq:
+  queue:
+    name: ms_notification
+  exchange:
+    name: ms_notification_exchange
+  routing:
+    key: ms_notification_routing_key

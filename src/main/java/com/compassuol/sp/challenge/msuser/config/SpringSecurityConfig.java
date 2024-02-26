@@ -1,8 +1,8 @@
 package com.compassuol.sp.challenge.msuser.config;
 
-import com.compassuol.sp.challenge.msuser.jwt.JwtAuthenticationEntryPoint;
-import com.compassuol.sp.challenge.msuser.jwt.JwtAuthenticationFilter;
-import com.compassuol.sp.challenge.msuser.jwt.service.UserDetailsService;
+import com.compassuol.sp.challenge.msuser.domain.jwt.JwtAuthenticationEntryPoint;
+import com.compassuol.sp.challenge.msuser.domain.jwt.JwtAuthenticationFilter;
+import com.compassuol.sp.challenge.msuser.domain.jwt.service.UserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

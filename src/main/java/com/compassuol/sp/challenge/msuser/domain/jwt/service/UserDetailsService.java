@@ -1,4 +1,4 @@
-package com.compassuol.sp.challenge.msuser.jwt.service;
+package com.compassuol.sp.challenge.msuser.domain.jwt.service;
 
 import com.compassuol.sp.challenge.msuser.domain.exceptions.EntityNotFoundException;
 import com.compassuol.sp.challenge.msuser.domain.model.User;
