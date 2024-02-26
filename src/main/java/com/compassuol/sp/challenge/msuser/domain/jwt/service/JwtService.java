@@ -1,4 +1,4 @@
-package com.compassuol.sp.challenge.msuser.jwt.service;
+package com.compassuol.sp.challenge.msuser.domain.jwt.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

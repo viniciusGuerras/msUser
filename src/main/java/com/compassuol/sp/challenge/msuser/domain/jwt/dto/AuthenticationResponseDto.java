@@ -1,4 +1,4 @@
-package com.compassuol.sp.challenge.msuser.jwt.dto;
+package com.compassuol.sp.challenge.msuser.domain.jwt.dto;
 
 
 import lombok.AllArgsConstructor;

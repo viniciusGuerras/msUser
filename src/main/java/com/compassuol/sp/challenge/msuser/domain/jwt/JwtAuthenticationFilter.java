@@ -1,7 +1,7 @@
-package com.compassuol.sp.challenge.msuser.jwt;
+package com.compassuol.sp.challenge.msuser.domain.jwt;
 
-import com.compassuol.sp.challenge.msuser.jwt.service.UserDetailsService;
-import com.compassuol.sp.challenge.msuser.jwt.service.JwtService;
+import com.compassuol.sp.challenge.msuser.domain.jwt.service.UserDetailsService;
+import com.compassuol.sp.challenge.msuser.domain.jwt.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
