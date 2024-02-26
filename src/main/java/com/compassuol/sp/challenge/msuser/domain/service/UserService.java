@@ -7,6 +7,7 @@ import com.compassuol.sp.challenge.msuser.domain.repository.UserRepository;
 import com.compassuol.sp.challenge.msuser.domain.openFeing.MsAddressConsumer;
 import com.compassuol.sp.challenge.msuser.domain.rabbitMq.RabbitProducer;
 import com.compassuol.sp.challenge.msuser.domain.model.Notification;
+import com.compassuol.sp.challenge.msuser.web.dto.mapper.CepMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,7 +33,7 @@ public class UserService {
 
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            msAddressConsumer.saveAddress(user.getCep());
+            msAddressConsumer.saveAddress(CepMapper.toDto(user.getCep()));
             rabbitProducer.sendMessage(new Notification(user.getEmail(), CREATE));
             return userRepository.save(user);
         }
