@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface MsAddressConsumer {
 
     @PostMapping
-    void saveAddress(@Valid @RequestBody CepDto dto);
+    Long saveAddress(@Valid @RequestBody CepDto dto);
 
 }
