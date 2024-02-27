@@ -3,10 +3,13 @@ package com.compassuol.sp.challenge.msuser.domain.service;
 import com.compassuol.sp.challenge.msuser.domain.exceptions.EntityNotFoundException;
 import com.compassuol.sp.challenge.msuser.domain.exceptions.UniqueFieldValidationException;
 import com.compassuol.sp.challenge.msuser.domain.model.User;
+import com.compassuol.sp.challenge.msuser.domain.model.UserAddress;
+import com.compassuol.sp.challenge.msuser.domain.repository.UserAddressRepository;
 import com.compassuol.sp.challenge.msuser.domain.repository.UserRepository;
 import com.compassuol.sp.challenge.msuser.domain.openFeing.MsAddressConsumer;
 import com.compassuol.sp.challenge.msuser.domain.rabbitMq.RabbitProducer;
 import com.compassuol.sp.challenge.msuser.domain.model.Notification;
+import com.compassuol.sp.challenge.msuser.web.dto.mapper.CepMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +28,8 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final UserAddressRepository userAddressRepository;
+
     private final RabbitProducer rabbitProducer;
 
     @Transactional
@@ -32,8 +37,12 @@ public class UserService {
 
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            msAddressConsumer.saveAddress(user.getCep());
+
+            Long addressId =  msAddressConsumer.saveAddress(CepMapper.toDto(user.getCep()));
+            userAddressRepository.save(new UserAddress(addressId, user));
+
             rabbitProducer.sendMessage(new Notification(user.getEmail(), CREATE));
+
             return userRepository.save(user);
         }
         catch (DataIntegrityViolationException ex)
