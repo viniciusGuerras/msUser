@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @AllArgsConstructor
-@Table(name = "userAddress", schema = "users")
+@Table(name = "user_address", schema = "msusers")
 @NoArgsConstructor
 public class UserAddress implements Serializable {
     @Id
