@@ -70,6 +70,7 @@ public class UserService {
         User oldUser = findById(id);
 
         if (!oldUser.getCep().equals(newUser.getCep())){
+            userAddressRepository.deleteByUser(oldUser);
             saveAddress(newUser);
         }
 
