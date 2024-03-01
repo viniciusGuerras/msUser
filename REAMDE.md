@@ -44,6 +44,7 @@ Creates a new user in the system.
 POST http://localhost:8080/v1/users
 Content-Type: application/json
 
+body:
 {
    "firstName": "nome",
    "lastName": "sobrenome",
@@ -58,11 +59,12 @@ Content-Type: application/json
 
 ### Login
 
-To log in a new user in the system and obtain a JWT token
+To log in a new user in the system and retrieve a JWT token
 ```http
 POST http://localhost:8080/v1/login
 Content-Type: application/json
 
+body:
 {
     "email" : "teste@gmail.com",
     "password" : "12345678"
@@ -71,7 +73,7 @@ Content-Type: application/json
 
 ### Get by id
 
-Returns fields from a specific user in the database
+Retrieves fields from a specific user in the database
 
 ```http
 GET http://localhost:8080/v1/users/2
@@ -81,13 +83,14 @@ Authorization: Bearer {token}
 
 ### Update Information
 
-Lets you update most fields of a user
+Lets you update fields of a user
 
 ```http
 PUT http://localhost:8080/v1/users/2
 Authorization: Bearer {token}
 Content-Type: application/json
 
+body:
 {
     "firstName": "nome",
     "lastName": "sobrenome",
@@ -106,6 +109,8 @@ Lets you update the password of a user
 ```http
 PUT http://localhost:8080/v1/users/2/password
 Authorization: Bearer {token}
+
+body:
 {
     "password": "12345678"
 }
