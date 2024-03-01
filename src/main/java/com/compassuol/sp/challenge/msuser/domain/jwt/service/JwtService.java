@@ -23,7 +23,7 @@ public class JwtService {
     public static final long EXPIRE_DAYS = 0;
     public static final long EXPIRE_HOURS = 1;
     public static final long EXPIRE_MINUTES = 0;
-    public static final String SECRET = "973D4BDECB7E5D98D0F1A25D6B7B0F0C9797D975FE6FCD45C29269AB574B5F92";
+    public static final String SECRET = "7A4B3CEA2B9F8E87A1C2B3D6A4B8E2C1B0A8D9F9A8B7C3E4D7F8E9A1C2B4D6E3";
 
     public String extractEmail(String token) {
         return extractClaim(token, Claims::getSubject);
