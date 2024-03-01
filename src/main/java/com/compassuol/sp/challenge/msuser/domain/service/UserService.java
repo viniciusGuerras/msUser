@@ -37,10 +37,14 @@ public class UserService {
 
     private final RabbitProducer rabbitProducer;
 
+    private final UserAddressService userAddressService;
+
+
     @Transactional
     public User create(User user){
 
         try {
+
             user.setPassword(passwordEncoder.encode(user.getPassword()));
 
             //MsAddress
@@ -69,9 +73,8 @@ public class UserService {
     public void updateInfo(Long id, User newUser){
         User oldUser = findById(id);
 
-        if (!oldUser.getCep().equals(newUser.getCep())){
-            userAddressRepository.deleteByUser(oldUser);
-            saveAddress(newUser);
+        if(!oldUser.getCep().equals(newUser.getCep())){
+            userAddressService.deleteAndSaveAddress(oldUser, newUser);
         }
 
         oldUser.setFirstName(newUser.getFirstName());
@@ -81,16 +84,18 @@ public class UserService {
         oldUser.setEmail(newUser.getEmail());
         oldUser.setCep(newUser.getCep());
         oldUser.setActive(newUser.getActive());
+        userRepository.save(oldUser);
         rabbitProducer.sendMessage(new Notification(newUser.getEmail(), UPDATE));
     }
 
     @Transactional
     public void updatePassword(Long id, User user) {
         User foundUser = findById(id);
-        foundUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        foundUser.setPassword(user.getPassword());
         rabbitProducer.sendMessage(new Notification(foundUser.getEmail(), UPDATE_PASSWORD));
     }
 
+    @Transactional
     public void saveAddress(User user){
         CepDto cep = CepMapper.toDto(user.getCep());
         String token = JWT_BEARER + service.GenerateToken(user.getEmail());
@@ -98,3 +103,4 @@ public class UserService {
         userAddressRepository.save(new UserAddress(addressId, user));
     }
 }
+
