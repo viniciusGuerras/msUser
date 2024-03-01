@@ -25,7 +25,7 @@ public class UserAddressService {
     private final UserAddressRepository userAddressRepository;
 
     @Transactional
-    public void deleteAndSaveAddress(User oldUser, User newUser) {
+    public void saveNewAddress(User oldUser, User newUser) {
             //arrange
             CepDto cep = CepMapper.toDto(newUser.getCep().replace("-", ""));
             String token = JWT_BEARER + service.GenerateToken(newUser.getEmail());

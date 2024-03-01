@@ -9,7 +9,7 @@ import com.compassuol.sp.challenge.msuser.domain.repository.UserAddressRepositor
 import com.compassuol.sp.challenge.msuser.domain.repository.UserRepository;
 import com.compassuol.sp.challenge.msuser.domain.openFeing.MsAddressConsumer;
 import com.compassuol.sp.challenge.msuser.domain.rabbitMq.RabbitProducer;
-import com.compassuol.sp.challenge.msuser.domain.model.Notification;
+import com.compassuol.sp.challenge.msuser.domain.rabbitMq.Notification;
 import com.compassuol.sp.challenge.msuser.web.dto.CepDto;
 import com.compassuol.sp.challenge.msuser.web.dto.mapper.CepMapper;
 import lombok.RequiredArgsConstructor;
@@ -74,7 +74,7 @@ public class UserService {
         User oldUser = findById(id);
 
         if(!oldUser.getCep().equals(newUser.getCep())){
-            userAddressService.deleteAndSaveAddress(oldUser, newUser);
+            userAddressService.saveNewAddress(oldUser, newUser);
         }
 
         oldUser.setFirstName(newUser.getFirstName());
