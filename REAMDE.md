@@ -14,10 +14,15 @@ It was part of `Challenge - 3` from my internship at [compassuol](https://compas
 | Additional Tools   |            |
 |--------------------|------------|
 | MySQL              |            |
-| MongoDB            |            |
 | RabbitMQ           |            |
 
 Contributors: Vinicius Guerra
+
+## Features
+- User saving and handling
+- OpenFeign support
+- RabbitMq support
+- External API calls
 
 ## How to Use
 
