@@ -33,7 +33,7 @@ public class UserUpdateDto {
     private String email;
 
     @NotBlank
-    @Pattern(regexp = "^\\d{5}-\\d{3}$")
+    @Pattern(regexp = "^\\d{5}-\\d{3}$", message = "Cep must match xxxxx-xxx format")
     private String cep;
 
     @NotNull
