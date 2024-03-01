@@ -1,0 +1,69 @@
+# msUsers - challenge
+
+###
+# @name add - User
+//< {%
+    // TODO: you can add here Pre-request handler
+//%}
+POST http://localhost:8080/v1/users
+Content-Type: application/json
+
+{
+    "firstName": "nome",
+    "lastName": "sobrenome",
+    "cpf": "000.000.000-00",
+    "birthdate": "0000-00-00",
+    "email": "teste@gmail.com",
+    "cep": "00000-000",
+    "password" : "12345678",
+    "active": true
+}
+
+> {%
+    // TODO: migrate to HTTP Client Response handler API
+    // // Removed unnecessary test scripts
+%}
+
+###
+# @name login - User
+POST http://localhost:8080/v1/login
+Content-Type: application/json
+
+{
+    "email" : "teste@gmail.com",
+    "password" : "12345678"
+}
+
+###
+# @name get by Id - User
+//< {%
+    // TODO: you can add here Pre-request handler
+//%}
+GET http://localhost:8080/v1/users/2
+Authorization: Bearer {{set_token}}
+
+###
+# @name update info - User
+PUT http://localhost:8080/v1/users/2
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb2xndWVydmluQGdtYWlsLmNvbSIsImlhdCI6MTcwOTMxOTA4MSwiZXhwIjoxNzA5MzIyNjgxfQ.pvyQf8NdWQXK_Y2b1OsuhGaa0AooMUPAvi3tvO-oTF0
+Content-Type: application/json
+
+{
+    "firstName": "nome",
+    "lastName": "sobrenome",
+    "cpf": "000.000.000-00",
+    "birthdate": "0000-00-00",
+    "email": "teste@gmail.com",
+    "cep": "00000-000",
+    "active": true
+}
+
+###
+# @name update pass - User
+PUT http://localhost:8080/v1/users/2/password
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsaWZlSXNTdWZmZXJpbmdAZ21haWwuY29tIiwiaWF0IjoxNzA5Mjk5NzY5LCJleHAiOjE3MDkzMDMzNjl9.tt-AAKwDV6hTMNDn1Ln21RUbIeWn4fKNCoP-o6zAGvY
+Content-Type: application/json
+
+{
+    "password" : "987654321"
+}

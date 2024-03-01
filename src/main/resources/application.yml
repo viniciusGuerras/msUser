@@ -7,7 +7,7 @@ spring:
   # MYSQL
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/demo_park?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Sao_Paulo
+    url: jdbc:mysql://localhost:3306/msusers?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Sao_Paulo
     username: root
     password:
 
@@ -18,3 +18,26 @@ spring:
       hibernate.format_sql: false
     hibernate:
       ddl-auto: update
+
+  #RabbitMq
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+springdoc:
+  swagger-ui:
+    path: /msuser.html
+  api-docs:
+    path: /msuser
+  packages-to-scan: com.compassuol.sp.challenge.msuser.web.controller
+
+
+rabbitmq:
+  queue:
+    name: ms_notification
+  exchange:
+    name: ms_notification_exchange
+  routing:
+    key: ms_notification_routing_key
