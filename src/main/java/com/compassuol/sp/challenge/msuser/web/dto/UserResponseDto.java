@@ -12,7 +12,7 @@ public class UserResponseDto {
     private String firstName;
     private String lastName;
     private String cpf;
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date birthdate;
     private String email;
     private String cep;
