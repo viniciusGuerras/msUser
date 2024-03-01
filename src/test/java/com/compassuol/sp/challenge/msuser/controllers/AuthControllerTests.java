@@ -20,7 +20,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -74,7 +73,7 @@ public class AuthControllerTests {
                     post("/v1/login")
                             .content(objectMapper.writeValueAsString(INVALID_EMAIL_LOGIN_REQUEST))
                             .contentType(MediaType.APPLICATION_JSON)
-            ).andExpect(status().isBadRequest());
+            ).andExpect(status().isUnprocessableEntity());
         }
 
         @Test
@@ -83,6 +82,6 @@ public class AuthControllerTests {
                     post("/v1/login")
                             .content(objectMapper.writeValueAsString(INVALID_PASSWORD_LOGIN_REQUEST))
                             .contentType(MediaType.APPLICATION_JSON)
-            ).andExpect(status().isBadRequest());
+            ).andExpect(status().isUnprocessableEntity());
         }
 }
