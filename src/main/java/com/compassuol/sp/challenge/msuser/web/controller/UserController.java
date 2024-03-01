@@ -126,7 +126,7 @@ public class UserController {
             })
 
     @PutMapping("/{id}/password")
-    public ResponseEntity<Void> updateUserPassword(@PathVariable("id") Long id, @RequestBody UserPasswordDto dto){
+    public ResponseEntity<Void> updateUserPassword(@PathVariable("id") Long id, @Valid @RequestBody UserPasswordDto dto){
         service.updatePassword(id, UserMapper.toUser(dto));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
