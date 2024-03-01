@@ -1,6 +1,5 @@
 package com.compassuol.sp.challenge.msuser.domain.jwt;
 
-import com.compassuol.sp.challenge.msuser.domain.exceptions.TokenInvalidException;
 import com.compassuol.sp.challenge.msuser.domain.jwt.service.UserDetailsService;
 import com.compassuol.sp.challenge.msuser.domain.jwt.service.JwtService;
 import com.compassuol.sp.challenge.msuser.web.exception.ApiExceptionHandler;

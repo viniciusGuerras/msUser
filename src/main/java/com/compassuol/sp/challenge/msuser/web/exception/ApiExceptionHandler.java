@@ -2,7 +2,6 @@ package com.compassuol.sp.challenge.msuser.web.exception;
 
 import com.compassuol.sp.challenge.msuser.domain.exceptions.CepNotFoundException;
 import com.compassuol.sp.challenge.msuser.domain.exceptions.EntityNotFoundException;
-import com.compassuol.sp.challenge.msuser.domain.exceptions.TokenInvalidException;
 import com.compassuol.sp.challenge.msuser.domain.exceptions.UniqueFieldValidationException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -22,17 +21,8 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @RestControllerAdvice
 public class ApiExceptionHandler {
 
-
-    public ResponseEntity<ErrorMessage> throwError(HttpServletRequest request, Exception ex){
-        log.error("Api Error - ", ex);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(new ErrorMessage(request, HttpStatus.UNPROCESSABLE_ENTITY, ex.getMessage()));
-
-    }
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorMessage> methodArgumentNotValidException(RuntimeException ex, HttpServletRequest request, BindingResult result){
+    public ResponseEntity<ErrorMessage> methodArgumentNotValidException(MethodArgumentNotValidException ex, HttpServletRequest request, BindingResult result){
         log.error("Api Error - ", ex);
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -87,14 +77,5 @@ public class ApiExceptionHandler {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, "Wrong URL"));
     }
-
-    @ExceptionHandler(TokenInvalidException.class)
-    public ResponseEntity<ErrorMessage> tokenException(TokenInvalidException ex, HttpServletRequest request){
-        log.error("Api Error - ", ex);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, ex.getMessage()));
-    }
-
 
 }
