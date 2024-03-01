@@ -28,27 +28,8 @@ public class AuthService {
 
     private final RabbitProducer rabbitProducer;
 
-    //Code for a register system
- /*
-    public AuthenticationResponseDto register(User request){
-        User user = new User();
-            user.setFirstName(request.getFirstName());
-            user.setLastName(request.getLastName());
-            user.setCpf(request.getCpf());
-            user.setBirthdate(request.getBirthdate());
-            user.setEmail(request.getEmail());
-            user.setCep(request.getCep());
-            user.setPassword(passwordEncoder.encode(request.getPassword()));
-            user.setActive(request.getActive());
-
-        user = repository.save(user);
-
-        String token = jwtService.GenerateToken(user.getEmail());
-        return new AuthenticationResponseDto(token);
-    }*/
-
     @Transactional
-    public AuthenticationResponseDto authenticate(User request){
+    public String authenticate(User request){
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -65,6 +46,6 @@ public class AuthService {
         Notification log = new Notification(request.getEmail(), LOGIN);
         rabbitProducer.sendMessage(log);
 
-        return new AuthenticationResponseDto(token);
+        return token;
     }
 }
