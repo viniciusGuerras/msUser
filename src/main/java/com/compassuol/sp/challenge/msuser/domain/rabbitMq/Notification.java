@@ -1,4 +1,4 @@
-package com.compassuol.sp.challenge.msuser.domain.model;
+package com.compassuol.sp.challenge.msuser.domain.rabbitMq;
 
 import com.compassuol.sp.challenge.msuser.domain.enums.EventTypeEnumeration;
 import jakarta.persistence.EnumType;

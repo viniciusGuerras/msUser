@@ -1,7 +1,6 @@
 package com.compassuol.sp.challenge.msuser.domain.rabbitMq;
 
 import com.compassuol.sp.challenge.msuser.domain.exceptions.MessageConversionException;
-import com.compassuol.sp.challenge.msuser.domain.model.Notification;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
