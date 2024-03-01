@@ -73,25 +73,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
             filterChain.doFilter(request, response);
         } catch (
         MalformedJwtException ex){
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            ((HttpServletResponse) response).sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid JWT token");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            (response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT token");
 
         }
         catch (
         ExpiredJwtException ex){
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            ((HttpServletResponse) response).sendError(HttpServletResponse.SC_BAD_REQUEST, "Expired JWT token");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            (response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Expired JWT token");
 
         }
         catch (
         UnsupportedJwtException ex){
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            ((HttpServletResponse) response).sendError(HttpServletResponse.SC_BAD_REQUEST, "Unsupported JWT token");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            (response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unsupported JWT token");
 
         }
         catch(IllegalArgumentException ex){
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            ((HttpServletResponse) response).sendError(HttpServletResponse.SC_BAD_REQUEST, "JWT claims string is empty");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            (response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "JWT claims string is empty");
 
         }
     }
