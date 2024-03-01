@@ -91,7 +91,7 @@ public class UserService {
     @Transactional
     public void updatePassword(Long id, User user) {
         User foundUser = findById(id);
-        foundUser.setPassword(user.getPassword());
+        foundUser.setPassword(passwordEncoder.encode(user.getPassword()));
         rabbitProducer.sendMessage(new Notification(foundUser.getEmail(), UPDATE_PASSWORD));
     }
 
