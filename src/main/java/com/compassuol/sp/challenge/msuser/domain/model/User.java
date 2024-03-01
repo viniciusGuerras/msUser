@@ -24,7 +24,7 @@ public class User implements Serializable {
     @Column(name = "last_name", length = 120, nullable = false)
     private String lastName;
 
-    @Column(name = "cpf", unique = true, nullable = false)
+    @Column(name = "cpf", unique = true, length = 14,nullable = false)
     private String cpf;
 
     @Column(name = "birthdate", nullable = false)
@@ -34,7 +34,7 @@ public class User implements Serializable {
     @Column(name = "email", length = 120, nullable = false, unique = true)
     private String email;
 
-    @Column(name = "cep", nullable = false)
+    @Column(name = "cep", length = 9, nullable = false)
     private String cep;
 
     @Column(name = "password", length = 120, nullable = false)
