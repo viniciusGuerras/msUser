@@ -7,9 +7,7 @@ import com.compassuol.sp.challenge.msuser.domain.jwt.service.UserDetailsService;
 import com.compassuol.sp.challenge.msuser.domain.service.UserService;
 import com.compassuol.sp.challenge.msuser.web.controller.UserController;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -24,8 +22,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.mockito.ArgumentMatchers.any;
 
 import org.springframework.web.context.WebApplicationContext;
-
-import javax.xml.validation.Validator;
 
 @WebMvcTest(value = UserController.class, excludeAutoConfiguration = SecurityAutoConfiguration.class)
 public class UserControllerTests {
