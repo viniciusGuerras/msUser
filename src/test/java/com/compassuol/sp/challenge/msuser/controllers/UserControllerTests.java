@@ -65,7 +65,7 @@ public class UserControllerTests {
                         post("/v1/users")
                                 .content(objectMapper.writeValueAsString(USER_NULL))
                                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isUnprocessableEntity());
     }
 
     @Test
@@ -119,7 +119,7 @@ public class UserControllerTests {
                         put("/v1/users/1")
                                 .content(objectMapper.writeValueAsString(USER_NULL))
                                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isUnprocessableEntity());
     }
 
     @Test
@@ -140,7 +140,7 @@ public class UserControllerTests {
                         put("/v1/users/1/password")
                                 .content(objectMapper.writeValueAsString(INVALID_PASSWORD))
                                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isUnprocessableEntity());
     }
 
 
