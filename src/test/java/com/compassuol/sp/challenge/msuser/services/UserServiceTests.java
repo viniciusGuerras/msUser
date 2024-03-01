@@ -1,8 +1,8 @@
 package com.compassuol.sp.challenge.msuser.services;
 
+import com.compassuol.sp.challenge.msuser.domain.exceptions.CepNotFoundException;
 import com.compassuol.sp.challenge.msuser.domain.exceptions.EntityNotFoundException;
 import com.compassuol.sp.challenge.msuser.domain.jwt.service.JwtService;
-import com.compassuol.sp.challenge.msuser.domain.jwt.service.UserDetailsService;
 import com.compassuol.sp.challenge.msuser.domain.model.User;
 import com.compassuol.sp.challenge.msuser.domain.openFeing.MsAddressConsumer;
 import com.compassuol.sp.challenge.msuser.domain.rabbitMq.RabbitProducer;
@@ -10,16 +10,11 @@ import com.compassuol.sp.challenge.msuser.domain.repository.UserAddressRepositor
 import com.compassuol.sp.challenge.msuser.domain.repository.UserRepository;
 import com.compassuol.sp.challenge.msuser.domain.service.UserService;
 import com.compassuol.sp.challenge.msuser.web.dto.AddressResponseDto;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
@@ -101,6 +96,14 @@ public class UserServiceTests {
 
         Long id = 1L;
         assertDoesNotThrow(() -> userService.updateInfo(id, USER));
+    }
+
+    @Test
+    public void createUser_withWrongCep(){
+        when(msAddressConsumer.saveAddress(any(), any())).thenThrow(new CepNotFoundException("cep not found"));
+        assertThrows(CepNotFoundException.class, () ->  userService.create(USER_WRONG_CEP));
+
+
     }
 
 }
