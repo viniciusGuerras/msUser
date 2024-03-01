@@ -40,6 +40,28 @@ public class UserConstants {
             , ""
             , true);
 
+    public static final User USER_WRONG_CEP = new User(
+            null,
+            "Gustavo"
+            , "Silva"
+            , "725.598.470-35"
+            , new Date()
+            , "gustavo@email.com"
+            , "99999-999"
+            , "12345678"
+            , true);
+
+    public static final User USER_WITH_ID = new User(
+            1L,
+            "Gustavo"
+            , "Silva"
+            , "725.598.470-35"
+            , new Date()
+            , "gustavo@email.com"
+            , "99999-999"
+            , "12345678"
+            , true);
+
     public static final UserPasswordDto PASSWORD = new UserPasswordDto(
             "12345678"
     );
