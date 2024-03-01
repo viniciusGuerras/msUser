@@ -12,11 +12,11 @@ import java.util.Date;
 public class UserUpdateDto {
 
     @NotBlank
-    @Size(min = 3)
+    @Size(min = 3, max = 160)
     private String firstName;
 
     @NotBlank
-    @Size(min = 3)
+    @Size(min = 3, max = 160)
     private String lastName;
 
     @NotBlank

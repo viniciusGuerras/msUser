@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class UserPasswordDto {
 
     @NotBlank
-    @Size(min = 6)
+    @Size(min = 6, max = 160)
     private String password;
 
 }
