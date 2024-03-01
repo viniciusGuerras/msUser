@@ -38,6 +38,7 @@ public class AuthController {
             })
     @PostMapping
     public ResponseEntity<AuthenticationResponseDto> userLogin(@Valid @RequestBody LoginRequestDto dto){
-        return ResponseEntity.ok(authService.authenticate(UserMapper.toUser(dto)));
+        String token = authService.authenticate(UserMapper.toUser(dto));
+        return ResponseEntity.ok().body(new AuthenticationResponseDto(token));
     }
 }
